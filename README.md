@@ -1,19 +1,52 @@
 # Cultivate
 
-## Description :
+## Description
 An agricultural game where you try to take out the nasty weeds and leave the good plants to grow. 
 
-## Setup :
+## Setup
 To set up this project locally, open your terminal and navigate to the directory where you would like to clone the project. Run `git clone repo-link` in your terminal.
 
 Once the project has been cloned, run `cd cultivate` to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
 
 To start the development server, run `npm start` or `yarn start`. Once the server has successfully started, open a window in your browser and navigate to the localhost. This is usually `localhost:3000`. You can confirm this is the correct Local address by checking in the terminal.
 
+## Gameplay
+
+### Mechanics :
+Player will move automatically. Player can control direction with up, down, left and right arrows
+
+### Components :
+World
+Player
+Trees ??
+Good plant (flower, corn, peas - choose one)
+Weed plant
+Timer
+Buy fertilizer button
+Points counter
+Good plants mowed counter ?? 
+Weeds mowed counter ??
+
+### Space :
+World will be entire screen
+Player will be limited to the boundaries of the screen - can not move outside of the world (no consequence for hitting boundary)
+
+### Goals :
+Get x number of points OR x number of good plants before your time runs out
+
+### Rules :
+Mowing good plants decreases total points
+Mowing weeds increases total points
+Buying fertilizer costs points, but gives you more good plants
+For every x number of good plants you get, you get x amount of time added to your timer
+
 #### TODOS:
 in setup, replace `repo-link` with the actual repo link
+decide which type of good plant you are going to use
+find icons for good plants and weeds
+decide which numbers to put for x in: Goals and Rules above
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
