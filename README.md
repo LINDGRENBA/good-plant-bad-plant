@@ -1,3 +1,18 @@
+# Cultivate
+
+## Description :
+An agricultural game where you try to take out the nasty weeds and leave the good plants to grow. 
+
+## Setup :
+To set up this project locally, open your terminal and navigate to the directory where you would like to clone the project. Run `git clone repo-link` in your terminal.
+
+Once the project has been cloned, run `cd cultivate` to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
+
+To start the development server, run `npm start` or `yarn start`. Once the server has successfully started, open a window in your browser and navigate to the localhost. This is usually `localhost:3000`. You can confirm this is the correct Local address by checking in the terminal.
+
+#### TODOS:
+in setup, replace `repo-link` with the actual repo link
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
