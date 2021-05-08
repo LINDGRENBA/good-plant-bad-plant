@@ -3,12 +3,15 @@ import Field from './components/Field';
 import Header from './components/Header';
 
 const Game = () => {
-  const [tractorPosition, setTractorPosition] = useState([5, 0]);
+  const [grid, setGrid] = useState(Array(80).fill(null));
+  const [tractorPosition, setTractorPosition] = useState([0, 0]);
+  const [profits, setProfits] = useState(500);
+  const [timeRemaining, setTimeRemaining] = useState();
 
   return (
     <div>
-      <Header />
-      <Field tractorPosition={tractorPosition} />
+      <Header profits={profits} />
+      <Field squares={grid} tractorPosition={tractorPosition} />
     </div>
   );
 }
