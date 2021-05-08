@@ -2,7 +2,7 @@ import React from 'react';
 
 const Weeds = () => {
     return (
-      <div>
+      <div className="icon">
        Weeds
       </div>
     );
