@@ -1,9 +1,16 @@
 import React from 'react';
 
-const Button = () => {
+const Button = ({ text }) => {
     return (
       <div>
-       Button
+       <button
+            style={{
+                padding: '20px',
+                fontSize: '30px'
+            }}
+        >
+           {text}
+        </button>
       </div>
     );
   }

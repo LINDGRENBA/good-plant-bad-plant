@@ -13,7 +13,7 @@ const Field = ({ tractorPosition }) => {
                 width: '1000px',
                 height: '800px',
                 background: '#fdf5d8',
-                margin: '200px auto',
+                margin: '100px auto',
                 border: '4px solid black',
             }}
             >
