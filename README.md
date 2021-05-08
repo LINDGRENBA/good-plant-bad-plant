@@ -40,6 +40,29 @@ Mowing weeds increases total points
 Buying fertilizer costs points, but gives you more good plants
 For every x number of good plants you get, you get x amount of time added to your timer
 
+Things for me to use / consider
+need to keep track of the 'field' state and check regularly if it has updated
+- consider the game loop
+- use js window.requestAnimationFrame()
+- use phaser 
+
+* Create the world ( Game ) with 
+Header
+Field
+Tractor
+Corn
+Grass
+Button
+
+* Add the images for the plants and player
+corn attribute - <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+lawn mower attribute - <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+grass attribute - <div>Icons made by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+
+
+* Create the state for each of the components
+
+
 #### TODOS:
 in setup, replace `repo-link` with the actual repo link
 decide which type of good plant you are going to use
