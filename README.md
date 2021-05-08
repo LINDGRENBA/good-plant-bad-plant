@@ -61,7 +61,7 @@ grass attribute - <div>Icons made by <a href="https://www.flaticon.com/authors/g
 
 
 * Create the state for each of the components
-
+set the position of the tractor using style={{ }} set the position to absolute and then use the x,y coordinates to set the top and left position.
 
 #### TODOS:
 in setup, replace `repo-link` with the actual repo link
