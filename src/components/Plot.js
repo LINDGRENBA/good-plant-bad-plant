@@ -10,7 +10,7 @@ const Plot = () => {
                 textAlign: 'center',
             }}
         >
-            plot
+            {/* plot */}
         </div>
     )
 }
