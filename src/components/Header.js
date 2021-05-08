@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 
-const Header = () => {
+const Header = ({ profits }) => {
     return (
         <div
             style={{
@@ -18,7 +18,7 @@ const Header = () => {
         >
             <Button text="Start Game"/>
             <h2>Mow down the grass to increase your points. Avoid the corn or you'll lose points.</h2>
-            <p>POINTS HERE</p>
+            <h1>Profits: ${profits}</h1>
         </div>
     )
 }
