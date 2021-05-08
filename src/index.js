@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Field from './Field';
+import Game from './Game';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Field />
+    <Game />
   </React.StrictMode>,
   document.getElementById('root')
 );
