@@ -11,7 +11,7 @@ const Field = ({ squares, tractorPosition }) => {
                 width: '1000px',
                 height: '800px',
                 background: '#fdf5d8',
-                margin: '100px auto',
+                margin: '50px auto',
                 border: '4px solid black',
             }}
             >
