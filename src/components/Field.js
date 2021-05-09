@@ -14,12 +14,15 @@ const Field = ({ tractorPosition, plants }) => {
                 background: '#fdf5d8',
                 margin: '50px auto',
                 border: '4px solid black',
+                zIndex: '-1',
             }}
             >
             <Tractor tractorPosition={tractorPosition} />
-            {/* { plants.length > 0 && plants.map((plant, i) => {
-                <Plant key={i} x={plant.x} y={plant.y} type={plant.type} />
-            })} */}
+            { (plants.length > 0) && plants.map((plant, i) => {
+                return (
+                    <Plant key={i} plant={plant} />
+                )
+            })}
         </div>
     )
 }
