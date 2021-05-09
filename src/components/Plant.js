@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Plant = ({x, y, type}) => {
+const Plant = ({plant}) => {
+    const {x, y, type} = plant;
     const style = `plant ${type}`;
     return (
         <div 
@@ -12,7 +13,7 @@ const Plant = ({x, y, type}) => {
                 height: '100px',
                 width: '100px',
             }}
-        >PLANT {type}</div>
+        ></div>
     )
 }
 

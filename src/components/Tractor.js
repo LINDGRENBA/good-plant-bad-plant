@@ -15,6 +15,7 @@ const Tractor = ({ tractorPosition }) => {
             left: `${tractorPosition[1]}px`,
             height: '100px',
             width: '100px',
+            zIndex: '20',
           }}
           />
       </div>
