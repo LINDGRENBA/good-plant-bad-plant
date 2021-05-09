@@ -13,46 +13,25 @@ To start the development server, run `npm start` or `yarn start`. Once the serve
 ## Gameplay
 
 ### Mechanics :
-Player will move automatically. Player can control direction with up, down, left and right arrows
+Tractor will move automatically. Player can control the direction with up, down, left and right arrows on the keyboard.
 
 ### Components :
-World
-Player
-Trees ??
-Good plant (flower, corn, peas - choose one)
-Weed plant
-Timer
-Buy fertilizer button
-Points counter
-Good plants mowed counter ?? 
-Weeds mowed counter ??
+Board: Field
+Player: Tractor
+Good plant: Corn
+Bad plant: Grass
+Countdown Timer
+Start Game Button
+Profit Points counter
 
-### Space :
-World will be entire screen
-Player will be limited to the boundaries of the screen - can not move outside of the world (no consequence for hitting boundary)
-
-### Goals :
-Get x number of points OR x number of good plants before your time runs out
+### Objective :
+Try to get as many profit points as possible before the time runs out.
 
 ### Rules :
-Mowing good plants decreases total points
-Mowing weeds increases total points
-Buying fertilizer costs points, but gives you more good plants
-For every x number of good plants you get, you get x amount of time added to your timer
-
-Things for me to use / consider
-need to keep track of the 'field' state and check regularly if it has updated
-- consider the game loop
-- use js window.requestAnimationFrame()
-- use phaser 
-
-* Create the world ( Game ) with 
-Header
-Field
-Tractor
-Corn
-Grass
-Button
+The tractor can only move up, down, left or right
+Mowing good plants decreases total profit points
+Mowing weeds increases total profit points
+When the timer runs out, the game is over
 
 * Add the images for the plants and player
 corn attribute - <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
@@ -65,9 +44,7 @@ set the position of the tractor using style={{ }} set the position to absolute a
 
 #### TODOS:
 in setup, replace `repo-link` with the actual repo link
-decide which type of good plant you are going to use
-find icons for good plants and weeds
-decide which numbers to put for x in: Goals and Rules above
+
 
 ## Getting Started with Create React App
 
