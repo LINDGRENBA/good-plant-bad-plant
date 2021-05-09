@@ -23,17 +23,30 @@ const Game = () => {
     const key = e.keyCode;
     switch(key) {
       // [up/down, left/right]
-      //left
       case 37:
-        console.log(key);
-        console.log([tractorPosition[0], tractorPosition[1] - 100]);
-        setTractorPosition([tractorPosition[0], tractorPosition[1] - 100]); // [100, 0]
+        //left
+        // console.log(key);
+        // console.log([tractorPosition[0], tractorPosition[1] - 100]);
+        setTractorPosition([tractorPosition[0], tractorPosition[1] - 100]);
+        break;
       case 38:
-        // setTractorPosition(tractorPosition);
+        //up
+        // console.log(key);
+        // console.log([tractorPosition[0] - 100, tractorPosition[1]]);
+        setTractorPosition([tractorPosition[0] - 100, tractorPosition[1]]);
+        break;
       case 39:
-        // setTractorPosition(tractorPosition);
+        //right
+        // console.log(key);
+        // console.log([tractorPosition[0], tractorPosition[1] + 100]);
+        setTractorPosition([tractorPosition[0], tractorPosition[1] + 100]);
+        break;
       case 40:
-        // setTractorPosition(tractorPosition);
+        //down
+        // console.log(key);
+        // console.log([tractorPosition[0] + 100, tractorPosition[1]]);
+        setTractorPosition([tractorPosition[0] + 100, tractorPosition[1]]);
+        break;
       default:
         // setTractorPosition(tractorPosition); 
     }
