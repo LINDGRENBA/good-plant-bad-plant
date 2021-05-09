@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Field from './components/Field';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 const Game = () => {
   const [grid, setGrid] = useState(Array(80).fill(null));
@@ -13,6 +14,7 @@ const Game = () => {
     <div>
       <Header profits={profits} />
       <Field squares={grid} tractorPosition={tractorPosition} />
+      <Footer />
     </div>
   );
 }
