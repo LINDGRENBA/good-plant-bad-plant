@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from './Button';
 
 const Header = ({ profits }) => {
     return (
@@ -16,8 +15,8 @@ const Header = ({ profits }) => {
                 alignItems: 'center'
             }}
         >
-            <Button text="Start Game"/>
-            <h2>Mow down the grass to increase your points. Avoid the corn or you'll lose points.</h2>
+            <button style={{ padding: '20px', fontSize: '30px' }}>Start Game</button>
+            <h2>Mow the grass to increase profit. If you mow the corn, profits will go down!</h2>
             <h1>Profits: ${profits}</h1>
         </div>
     )
