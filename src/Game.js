@@ -7,6 +7,7 @@ const Game = () => {
   const [tractorPosition, setTractorPosition] = useState([0, 0]);
   const [profits, setProfits] = useState(500);
   const [timeRemaining, setTimeRemaining] = useState();
+  const [gameOver, setGameOver] = useState(false);
 
   return (
     <div>
