@@ -12,6 +12,8 @@ const Plant = ({plant}) => {
                 left: `${y}px`,
                 height: '100px',
                 width: '100px',
+                backgroundSize: 'cover',
+                zIndex: '10',
             }}
         ></div>
     )

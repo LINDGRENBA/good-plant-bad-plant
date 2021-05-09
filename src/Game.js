@@ -15,7 +15,7 @@ const Game = () => {
   {
     x: 700,
     y: 800,
-    type: "good"
+    type: "bad"
   }]);
 
   const startGame = () => {
@@ -79,16 +79,22 @@ const Game = () => {
     let updatedPlants = [...plants]
     updatedPlants.map((plant, i) => {
       if( currentPos[0] === plant.x && currentPos[1] === plant.y){
+        if(plant.type === "good") {
+          setProfits(profits => profits - 100);
+        }
+        if(plant.type === "bad") {
+          setProfits(profits => profits + 30);
+        }
         updatedPlants = plants.filter(plant => plant !== plants[i]);
-        console.log(plants);
-        console.log(updatedPlants);
         setPlants([...updatedPlants]);
       }
     })
   }
 
   const gameLoop = () => {
-
+    // check if mow plants
+    // update timer
+    // check if timer is at zero
   }
 
   useEffect(() => {

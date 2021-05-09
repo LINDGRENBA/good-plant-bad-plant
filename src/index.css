@@ -16,8 +16,6 @@ code {
 
 .good {
   background-image: url('images/icons/corn.png');
-  background-size: cover;
-  z-index: 10;
 }
 
 .bad {
