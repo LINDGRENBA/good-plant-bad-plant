@@ -11,6 +11,11 @@ const Game = () => {
     x: 500,
     y: 200,
     type: "good"
+  },
+  {
+    x: 700,
+    y: 800,
+    type: "good"
   }]);
 
   const startGame = () => {
@@ -25,6 +30,7 @@ const Game = () => {
 
   const moveTractor = (e) => {
     e.preventDefault();
+    checkIfMowPlant();
     const key = e.keyCode;
     const oldPosition = [...tractorPosition];
     // console.log(`old position ${oldPosition}`);
@@ -32,32 +38,34 @@ const Game = () => {
       // [up/down, left/right]
       case 37:
         //left
-        setTractorPosition(checkIfCollide(oldPosition, [tractorPosition[0], tractorPosition[1] - 100])); // pass [0, 0] to checkIfCollide
+        setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0], tractorPosition[1] - 100])); // pass [0, 0] to checkIfOutOfBounds
         break;
       case 38:
         //up
-       setTractorPosition(checkIfCollide(oldPosition, [tractorPosition[0] - 100, tractorPosition[1]]));
+       setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0] - 100, tractorPosition[1]]));
         break;
       case 39:
         //right
-       setTractorPosition(checkIfCollide(oldPosition, [tractorPosition[0], tractorPosition[1] + 100]));
+       setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0], tractorPosition[1] + 100]));
         break;
       case 40:
         //down
-       setTractorPosition(checkIfCollide(oldPosition, [tractorPosition[0] + 100, tractorPosition[1]]));
+       setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0] + 100, tractorPosition[1]]));
         break;
       default:
         setTractorPosition(oldPosition); 
     }
   }
 
-  const checkIfCollide = (oldPos, newPos) => {
+  const checkIfOutOfBounds = (oldPos, newPos) => {
     // console.log(oldPos, newPos);
     // check that x and y coordinates are not outside of field boundaries
     return (newPos[0] >=0 && newPos[0] < 800) && (newPos[1] >= 0 && newPos[1] < 1000) ? newPos : oldPos;
   }
 
   const createNewPlant = () => {
+    // check each object in the plant array to make sure there's not already an object with the same x and y position
+    // spawn more bad than good based on a percentage
     const min = 0;
     const maxHt = 800;
     const maxWt = 1000;
@@ -67,7 +75,16 @@ const Game = () => {
   }
 
   const checkIfMowPlant = () => {
-
+    const currentPos = [...tractorPosition];
+    let updatedPlants = [...plants]
+    updatedPlants.map((plant, i) => {
+      if( currentPos[0] === plant.x && currentPos[1] === plant.y){
+        updatedPlants = plants.filter(plant => plant !== plants[i]);
+        console.log(plants);
+        console.log(updatedPlants);
+        setPlants([...updatedPlants]);
+      }
+    })
   }
 
   const gameLoop = () => {
