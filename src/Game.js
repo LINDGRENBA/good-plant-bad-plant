@@ -1,19 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Field from './components/Field';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Countdown from 'react-countdown';
 
 const Game = () => {
-  const [grid, setGrid] = useState(Array(80).fill(null));
   const [tractorPosition, setTractorPosition] = useState([0, 0]);
   const [profits, setProfits] = useState(500);
-  const [timeRemaining, setTimeRemaining] = useState(5);
   const [gameOver, setGameOver] = useState(false);
+
+  const startGame = () => {
+    setTractorPosition([0, 0]);
+    setProfits(500);
+    setGameOver(false);
+  }
+
+  const endGame = () => {
+    setGameOver(true);
+  }
+
+  const moveTractor = (e) => {
+    e.preventDefault();
+    const key = e.keyCode;
+    switch(key) {
+      // [up/down, left/right]
+      //left
+      case 37:
+        console.log(key);
+        console.log([tractorPosition[0], tractorPosition[1] - 100]);
+        setTractorPosition([tractorPosition[0], tractorPosition[1] - 100]); // [100, 0]
+      case 38:
+        // setTractorPosition(tractorPosition);
+      case 39:
+        // setTractorPosition(tractorPosition);
+      case 40:
+        // setTractorPosition(tractorPosition);
+      default:
+        // setTractorPosition(tractorPosition); 
+    }
+  }
+
+  const checkIfCollide = () => {
+
+  }
+
+  const mowPlant = () => {
+
+  }
+
+  const gameLoop = () => {
+
+  }
+
+  useEffect(() => {
+    window.addEventListener("keydown", moveTractor);
+
+    return () => {
+      window.removeEventListener("keydown", moveTractor);
+    }
+  }, [tractorPosition]);
+
 
   return (
     <div>
-      <Header timeRemaining={timeRemaining} profits={profits} />
+      <Header profits={profits} />
       <div 
         style={{
           textAlign: 'center', 
@@ -22,7 +71,7 @@ const Game = () => {
       >
         Countdown Timer
       </div>
-      <Field squares={grid} tractorPosition={tractorPosition} />
+      <Field tractorPosition={tractorPosition} />
       <Footer />
     </div>
   );

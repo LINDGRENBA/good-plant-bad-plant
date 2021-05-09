@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Tractor from './Tractor';
 
-const Field = ({ squares, tractorPosition }) => {
+const Field = ({ tractorPosition }) => {
 
     return (
         <div 
