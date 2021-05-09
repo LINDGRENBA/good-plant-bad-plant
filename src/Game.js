@@ -7,6 +7,11 @@ const Game = () => {
   const [tractorPosition, setTractorPosition] = useState([0, 0]);
   const [profits, setProfits] = useState(500);
   const [gameOver, setGameOver] = useState(false);
+  const [plants, setPlants] = useState([{
+    x: 500,
+    y: 200,
+    type: "good"
+  }]);
 
   const startGame = () => {
     setTractorPosition([0, 0]);
@@ -22,7 +27,7 @@ const Game = () => {
     e.preventDefault();
     const key = e.keyCode;
     const oldPosition = [...tractorPosition];
-    console.log(`old position ${oldPosition}`);
+    // console.log(`old position ${oldPosition}`);
     switch(key) {
       // [up/down, left/right]
       case 37:
@@ -47,11 +52,18 @@ const Game = () => {
   }
 
   const checkIfCollide = (oldPos, newPos) => {
-    console.log(oldPos, newPos);
-    // check if the new position's x is less than 0 or greater than 100
-    // check if the new position's y is less than 0 or greater than 100
+    // console.log(oldPos, newPos);
+    // check that x and y coordinates are not outside of field boundaries
     return (newPos[0] >=0 && newPos[0] < 800) && (newPos[1] >= 0 && newPos[1] < 1000) ? newPos : oldPos;
-    
+  }
+
+  const createNewPlant = () => {
+    const min = 0;
+    const maxHt = 800;
+    const maxWt = 1000;
+    const x = Math.floor(Math.random() * (min - maxWt) + min);
+    const y = Math.floor(Math.random() * (min - maxHt) + min);
+
   }
 
   const checkIfMowPlant = () => {
@@ -82,7 +94,7 @@ const Game = () => {
       >
         Countdown Timer
       </div>
-      <Field tractorPosition={tractorPosition} />
+      <Field tractorPosition={tractorPosition} plants={plants} />
       <Footer />
     </div>
   );

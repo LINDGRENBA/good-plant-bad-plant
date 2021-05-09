@@ -14,20 +14,20 @@ code {
     monospace;
 }
 
+.good {
+  background-image: url('images/icons/corn.png');
+}
+
+.bad {
+  background-image: url('images/icons/grass.png');
+}
+
 /* .grass, .corn {
   height: 50px;
   width: 50px;
   background-size: cover;
   z-index: 1;
 }
-
-.corn {
-  background-image: url("./images/icons/corn.png");
-}
-
-.grass {
-  background-image: url("./images/icons/grass.png");
-} */
 
 
 /*

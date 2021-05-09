@@ -1,7 +1,8 @@
 import React from 'react';
 import Tractor from './Tractor';
+import Plant from './Plant';
 
-const Field = ({ tractorPosition }) => {
+const Field = ({ tractorPosition, plants }) => {
 
     return (
         <div 
@@ -16,6 +17,9 @@ const Field = ({ tractorPosition }) => {
             }}
             >
             <Tractor tractorPosition={tractorPosition} />
+            {/* { plants.length > 0 && plants.map((plant, i) => {
+                <Plant key={i} x={plant.x} y={plant.y} type={plant.type} />
+            })} */}
         </div>
     )
 }
