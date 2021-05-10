@@ -6,7 +6,7 @@ An agricultural game where you try to take out the nasty weeds and leave the goo
 ## Setup
 To set up this project locally, open your terminal and navigate to the directory where you would like to clone the project. Copy the code link from the [Github repository](https://github.com/LINDGRENBA/good-plant-bad-plant) and run `git clone git@github.com:LINDGRENBA/good-plant-bad-plant.git` for ssh or `git clone https://github.com/LINDGRENBA/good-plant-bad-plant.git` for https in your terminal.
 
-Once the project has been cloned, run `cd good-plant-bad-plant` to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
+Once the project has been cloned, type `cd good-plant-bad-plant` into your terminal and press enter to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
 
 To start the development server, type `npm start` or `yarn start`. Once the server has successfully started, open a window in your browser and navigate to the localhost. This is usually `localhost:3000`. You can confirm this is the correct Local address by checking in the terminal.
 
