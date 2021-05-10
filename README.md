@@ -34,6 +34,7 @@ Mowing weeds increases total profit points
 When the timer runs out, the game is over
 
 ### Constants:
+consider adding constants for the following:
 FIELD_WIDTH
 FIELD_HEIGHT
 ICON_WIDTH
