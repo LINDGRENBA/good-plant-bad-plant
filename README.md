@@ -20,7 +20,7 @@ Board: Field
 Player: Tractor
 Good plant: Corn
 Bad plant: Grass
-Countdown Timer
+Moves counter
 Start Game Button
 Profit Points counter
 
