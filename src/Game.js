@@ -7,7 +7,7 @@ const Game = () => {
   const [tractorPosition, setTractorPosition] = useState([0, 0]);
   const [profits, setProfits] = useState(500);
   const [gameOver, setGameOver] = useState(true);
-  const [counter, setCounter] = useState(200);
+  const [counter, setCounter] = useState(100);
   const [plants, setPlants] = useState([]);
   //not using gameover ...
 
@@ -15,7 +15,7 @@ const Game = () => {
     setTractorPosition([0, 0]);
     setProfits(500);
     setGameOver(false);
-    setCounter(200);
+    setCounter(100);
     setPlants([]);
     // gameLoop();
   }
@@ -26,6 +26,8 @@ const Game = () => {
 
   const moveTractor = (e) => {
     e.preventDefault();
+    createNewPlant();
+    createNewPlant();
     createNewPlant();
     (counter <= 0) ? endGame() : setCounter(counter - 1);
     checkIfMowPlant();
@@ -151,7 +153,7 @@ const Game = () => {
       <div 
         style={{
           textAlign: 'center', 
-          paddingTop: '50px', 
+          paddingTop: '10px', 
           fontSize: '2rem'}}
       >
         {/* Countdown Timer */}
