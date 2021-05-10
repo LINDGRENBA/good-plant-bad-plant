@@ -9,6 +9,7 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(true);
   const [counter, setCounter] = useState(200);
   const [plants, setPlants] = useState([]);
+  //not using gameover ...
 
   const startNewGame = () => {
     setTractorPosition([0, 0]);
@@ -87,8 +88,8 @@ const Game = () => {
     const coordinatesFull = checkCoordinates(coordinates);
     if(!coordinatesFull) {
       let type = "";
-      const percentageRate = 5;
-      (Math.floor(Math.random() * 10) > percentageRate) ? type="good" : type="bad";
+      const goodPlantPercentageRate = 4;
+      (Math.floor(Math.random() * 10) > goodPlantPercentageRate) ? type="good" : type="bad";
       // console.log(type);
       const newPlant = {
         x,

@@ -12,7 +12,7 @@ const Field = ({ tractorPosition, plants }) => {
                 width: '1000px',
                 height: '800px',
                 background: '#fdf5d8',
-                margin: '50px auto',
+                margin: '10px auto',
                 border: '4px solid black',
                 zIndex: '-1',
             }}
