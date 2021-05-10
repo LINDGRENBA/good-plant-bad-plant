@@ -71,7 +71,7 @@ const Game = () => {
     return (newPos[0] >=0 && newPos[0] < 800) && (newPos[1] >= 0 && newPos[1] < 1000) ? newPos : oldPos;
   }
 
-  const checkCoordinates = (coordinates, plants) => {
+  const checkCoordinates = (coordinates,) => {
 
     // ||
     //     (tractorPosition[0] === newPlant.x && tractorPosition[1] === newPlant.y) ||
