@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Header = ({ profits }) => {
+const Header = ({ profits, startNewGame, counter }) => {
     return (
         <div
             style={{
@@ -14,15 +14,16 @@ const Header = ({ profits }) => {
             <h1>Good Plant, Bad Plant</h1>
             <div
                 style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-evenly',
-                    alignItems: 'center'
+                    // display: 'flex',
+                    // flexDirection: 'row',
+                    // justifyContent: 'space-evenly',
+                    // alignItems: 'center'
                 }}
             >
-                <button style={{ padding: '20px', fontSize: '30px' }}>Start Game</button>
-                <h2>Mow the grass to increase profit. If you mow the corn, profits will go down!</h2>
+                <h2>Mow as much grass as you can to increase your profits before you run out of turns.</h2>
+                <h2>Avoid the corn or your profits will take a hit!</h2>
                 <h1>Profits: ${profits}</h1>
+                { (counter <= 0) && <button onClick={startNewGame} style={{ padding: '20px', fontSize: '30px' }}>Start Game</button>}
             </div>
         </div>
     )
