@@ -8,20 +8,27 @@ const Game = () => {
   const [profits, setProfits] = useState(500);
   const [gameOver, setGameOver] = useState(false);
   const [plants, setPlants] = useState([{
-    x: 500,
-    y: 200,
+    x: 100,
+    y: 900,
     type: "good"
   },
   {
     x: 700,
-    y: 800,
+    y: 100,
+    type: "good"
+  },
+  {
+    x: 700,
+    y: 500,
     type: "bad"
-  }]);
+  }
+]);
 
   const startGame = () => {
     setTractorPosition([0, 0]);
     setProfits(500);
     setGameOver(false);
+    // start the timer
   }
 
   const endGame = () => {
@@ -31,6 +38,7 @@ const Game = () => {
   const moveTractor = (e) => {
     e.preventDefault();
     checkIfMowPlant();
+    createNewPlant();
     const key = e.keyCode;
     const oldPosition = [...tractorPosition];
     // console.log(`old position ${oldPosition}`);
@@ -63,15 +71,43 @@ const Game = () => {
     return (newPos[0] >=0 && newPos[0] < 800) && (newPos[1] >= 0 && newPos[1] < 1000) ? newPos : oldPos;
   }
 
-  const createNewPlant = () => {
-    // check each object in the plant array to make sure there's not already an object with the same x and y position
-    // spawn more bad than good based on a percentage
-    const min = 0;
-    const maxHt = 800;
-    const maxWt = 1000;
-    const x = Math.floor(Math.random() * (min - maxWt) + min);
-    const y = Math.floor(Math.random() * (min - maxHt) + min);
+  const checkCoordinates = (coordinates, plants) => {
 
+    // ||
+    //     (tractorPosition[0] === newPlant.x && tractorPosition[1] === newPlant.y) ||
+    //     (newPlant.x > 1000 || newPlant.x < 0) ||
+    //     (newPlant.y > 800 || newPlant.y < 0)
+    
+    plants.map((plant) => {
+      return (plant.x == coordinates[0] && plant.y == coordinates[1]) ? true : false
+      // if((plant.y == coordinates[0] && plant.x == coordinates[1]) ) {
+      //     return true;
+      //   }
+    });
+
+    return false;
+  }
+
+  const createNewPlant = () => {
+  // create a random x and y coordinate array
+    const x = Math.ceil( (Math.floor(Math.random() * 900)) / 100) * 100;
+    const y = Math.ceil( (Math.floor(Math.random() * 700)) / 100) * 100;
+    const coordinates = [x, y];
+    // console.log(coordinates);
+    const coordinatesFull = checkCoordinates(coordinates);
+    console.log(coordinatesFull);
+    console.log(coordinates);
+    // generate a good or bad plant
+    let type = "";
+    const percentageRate = 5;
+    (Math.floor(Math.random() * 10) > percentageRate) ? type="good" : type="bad";
+    // console.log(type);
+    const newPlant = {
+      x,
+      y,
+      type
+    }
+    // console.log(newPlant);
   }
 
   const checkIfMowPlant = () => {
@@ -83,7 +119,7 @@ const Game = () => {
           setProfits(profits => profits - 100);
         }
         if(plant.type === "bad") {
-          setProfits(profits => profits + 30);
+          setProfits(profits => profits + 50);
         }
         updatedPlants = plants.filter(plant => plant !== plants[i]);
         setPlants([...updatedPlants]);
@@ -93,8 +129,9 @@ const Game = () => {
 
   const gameLoop = () => {
     // check if mow plants
-    // update timer
-    // check if timer is at zero
+    // create new plants - this should happen after check if mow
+    // update the timer
+    // check if timer is at zero -> if yes, endGame();
   }
 
   useEffect(() => {
