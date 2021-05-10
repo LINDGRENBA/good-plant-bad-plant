@@ -1,24 +1,36 @@
 import React from 'react';
-import Button from './Button';
 
-const Header = ({ profits }) => {
+const Header = ({ highScore, profits, startNewGame, moves }) => {
     return (
         <div
             style={{
+                position: 'relative',
                 width: '100vw',
-                padding: '20px',
+                padding: '10px',
                 background: '#4c9f70',
                 color: '#fff',
-                fontSize: '20px',
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-evenly',
-                alignItems: 'center'
+                textAlign: 'center',
             }}
         >
-            <Button text="Start Game"/>
-            <h2>Mow down the grass to increase your points. Avoid the corn or you'll lose points.</h2>
-            <h1>Profits: ${profits}</h1>
+
+            <h2
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '20px',
+                }}
+            >
+                High Score: {highScore}
+            </h2>
+
+            <h1>Good Plant, Bad Plant</h1>
+            <div>
+            <h2>Mow as much grass as you can to increase your profits before you run out of turns.</h2>
+                <h2>Avoid the corn or your profits will take a hit!</h2>
+                <h2>Plants will grow as you move the tractor. Use the arrows on your keyboard.</h2>
+                <h1>Profits: ${profits}</h1>
+                { (moves <= 0) && <button onClick={startNewGame} style={{ padding: '20px', fontSize: '30px' }}>Start New Game</button>}
+            </div>
         </div>
     )
 }

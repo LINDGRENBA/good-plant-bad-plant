@@ -1,10 +1,10 @@
-# Cultivate
+# Good Plant, Bad Plant
 
 ## Description
 An agricultural game where you try to take out the nasty weeds and leave the good plants to grow. 
 
 ## Setup
-To set up this project locally, open your terminal and navigate to the directory where you would like to clone the project. Run `git clone repo-link` in your terminal.
+To set up this project locally, open your terminal and navigate to the directory where you would like to clone the project. Copy the repository link from Github and run `git clone repo-link` in your terminal.
 
 Once the project has been cloned, run `cd cultivate` to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
 
@@ -13,61 +13,38 @@ To start the development server, run `npm start` or `yarn start`. Once the serve
 ## Gameplay
 
 ### Mechanics :
-Player will move automatically. Player can control direction with up, down, left and right arrows
+Tractor will move automatically. Player can control the direction with up, down, left and right arrows on the keyboard.
 
 ### Components :
-World
-Player
-Trees ??
-Good plant (flower, corn, peas - choose one)
-Weed plant
-Timer
-Buy fertilizer button
-Points counter
-Good plants mowed counter ?? 
-Weeds mowed counter ??
+Board: Field
+Player: Tractor
+Good plant: Corn
+Bad plant: Grass
+Countdown Timer
+Start Game Button
+Profit Points counter
 
-### Space :
-World will be entire screen
-Player will be limited to the boundaries of the screen - can not move outside of the world (no consequence for hitting boundary)
-
-### Goals :
-Get x number of points OR x number of good plants before your time runs out
+### Objective :
+Try to get as many profit points as possible before the time runs out.
 
 ### Rules :
-Mowing good plants decreases total points
-Mowing weeds increases total points
-Buying fertilizer costs points, but gives you more good plants
-For every x number of good plants you get, you get x amount of time added to your timer
+The tractor can only move up, down, left or right
+Mowing good plants decreases total profit points
+Mowing weeds increases total profit points
+When the timer runs out, the game is over
 
-Things for me to use / consider
-need to keep track of the 'field' state and check regularly if it has updated
-- consider the game loop
-- use js window.requestAnimationFrame()
-- use phaser 
-
-* Create the world ( Game ) with 
-Header
-Field
-Tractor
-Corn
-Grass
-Button
-
-* Add the images for the plants and player
-corn attribute - <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-lawn mower attribute - <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-grass attribute - <div>Icons made by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-
-
-* Create the state for each of the components
-set the position of the tractor using style={{ }} set the position to absolute and then use the x,y coordinates to set the top and left position.
+### Constants:
+consider adding constants for the following:
+FIELD_WIDTH
+FIELD_HEIGHT
+ICON_WIDTH
+ICON_HEIGHT
+TRACTOR_INITIAL_POSITION
+PERCENTAGE_RATE
 
 #### TODOS:
 in setup, replace `repo-link` with the actual repo link
-decide which type of good plant you are going to use
-find icons for good plants and weeds
-decide which numbers to put for x in: Goals and Rules above
+
 
 ## Getting Started with Create React App
 

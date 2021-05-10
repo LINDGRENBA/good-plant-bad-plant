@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Tractor from './Tractor';
-import Plot from './Plot';
+import Plant from './Plant';
 
-const Field = ({ squares, tractorPosition }) => {
+const Field = ({ plants, tractorPosition }) => {
 
     return (
         <div 
@@ -12,15 +12,11 @@ const Field = ({ squares, tractorPosition }) => {
                 width: '1000px',
                 height: '800px',
                 background: '#fdf5d8',
-                margin: '100px auto',
+                margin: '10px auto',
                 border: '4px solid black',
-                display: 'grid',
-                gridTemplate: 'repeat(8, 1fr) / repeat(10, 1fr)',
+                zIndex: '-1',
             }}
             >
-            {squares.map((square, i) => (
-                <Plot key={i} value={square} />
-            ))}
             <Tractor tractorPosition={tractorPosition} />
         </div>
     )
