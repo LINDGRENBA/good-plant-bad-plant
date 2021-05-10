@@ -6,29 +6,17 @@ import Footer from './components/Footer';
 const Game = () => {
   const [tractorPosition, setTractorPosition] = useState([0, 0]);
   const [profits, setProfits] = useState(500);
-  const [gameOver, setGameOver] = useState(false);
-  const [plants, setPlants] = useState([{
-    x: 100,
-    y: 700,
-    type: "good"
-  },
-  {
-    x: 700,
-    y: 100,
-    type: "good"
-  },
-  {
-    x: 500,
-    y: 100,
-    type: "bad"
-  }
-]);
+  const [gameOver, setGameOver] = useState(true);
+  const [counter, setCounter] = useState(200);
+  const [plants, setPlants] = useState([]);
 
-  const startGame = () => {
+  const startNewGame = () => {
     setTractorPosition([0, 0]);
     setProfits(500);
     setGameOver(false);
-    // start the timer
+    setCounter(200);
+    setPlants([]);
+    // gameLoop();
   }
 
   const endGame = () => {
@@ -37,38 +25,38 @@ const Game = () => {
 
   const moveTractor = (e) => {
     e.preventDefault();
+    createNewPlant();
+    (counter <= 0) ? endGame() : setCounter(counter - 1);
     checkIfMowPlant();
     const key = e.keyCode;
     const oldPosition = [...tractorPosition];
     const [x, y] = oldPosition;
-    // console.log(`old position ${oldPosition}`);
-    switch(key) {
-      // [up/down, left/right]
-      case 37:
-        //left
-        console.log(key);
-        setTractorPosition(checkIfOutOfBounds(oldPosition, [x - 100, y]));
-        break;
-      case 38:
-        //up
-       setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y-100]));
-        break;
-      case 39:
-        //right
-       setTractorPosition(checkIfOutOfBounds(oldPosition, [x + 100, y]));
-        break;
-      case 40:
-        //down
-       setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y + 100]));
-        break;
-      default:
-        setTractorPosition(oldPosition); 
+    if(counter > 0) {
+      switch(key) {
+        case 37:
+          //left
+          setTractorPosition(checkIfOutOfBounds(oldPosition, [x - 100, y]));
+          break;
+        case 38:
+          //up
+         setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y-100]));
+          break;
+        case 39:
+          //right
+         setTractorPosition(checkIfOutOfBounds(oldPosition, [x + 100, y]));
+          break;
+        case 40:
+          //down
+         setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y + 100]));
+          break;
+        default:
+          setTractorPosition(oldPosition); 
+      }
     }
   }
 
   const checkIfOutOfBounds = (oldPos, newPos) => {
     // console.log(oldPos, newPos);
-    // check that x and y coordinates are not outside of field boundaries
     return (newPos[0] >=0 && newPos[0] < 1000) && (newPos[1] >= 0 && newPos[1] < 800) ? newPos : oldPos;
   }
 
@@ -76,10 +64,10 @@ const Game = () => {
     const [x, y] = coordinates;
     let matchFound = [];
     
-    let result = plants.map((plant) => {
+    plants.map((plant) => {
       if (
-        (plant.x == x && plant.y == y) ||
-        (tractorPosition[0] == x && tractorPosition[1] == y)
+        (plant.x === x && plant.y === y) ||
+        (tractorPosition[0] === x && tractorPosition[1] === y)
         ) {
         matchFound.push(true);
       } else {
@@ -88,10 +76,6 @@ const Game = () => {
     });
 
     return matchFound.includes(true) ? true : false;
-      // ||
-    //     (tractorPosition[0] === newPlant.x && tractorPosition[1] === newPlant.y) ||
-    //     (newPlant.x > 1000 || newPlant.x < 0) ||
-    //     (newPlant.y > 800 || newPlant.y < 0)
   }
 
   const createNewPlant = () => {
@@ -133,32 +117,44 @@ const Game = () => {
     })
   }
 
-  const gameLoop = () => {
-    // check if mow plants
-    // create new plants - this should happen after check if mow
-    // update the timer
-    // check if timer is at zero -> if yes, endGame();
-  }
+  // const gameLoop = () => {
+  //   const counterCopy = counter;
+  //   setCounter(counterCopy - 1);
+  //   if(counterCopy <= 0){
+  //     console.log("game over");
+  //     endGame();
+  //   } else {
+  //     if(counterCopy % 5 === 0 && !gameOver) {
+  //       console.log("new plant");
+  //       createNewPlant();
+  //     }
+  //     requestAnimationFrame(gameLoop);
+  //   }
+  // }
 
   useEffect(() => {
     window.addEventListener("keydown", moveTractor);
+    // checkIfMowPlant();
 
     return () => {
       window.removeEventListener("keydown", moveTractor);
     }
-  }, [tractorPosition, plants]);
+  }, [tractorPosition]);
+
+  // window.requestAnimationFrame(gameLoop);
 
 
   return (
     <div>
-      <Header profits={profits} />
+      <Header profits={profits} startNewGame={startNewGame} counter={counter} />
       <div 
         style={{
           textAlign: 'center', 
           paddingTop: '50px', 
           fontSize: '2rem'}}
       >
-        Countdown Timer
+        {/* Countdown Timer */}
+        Moves remaining: {counter}
       </div>
       <Field tractorPosition={tractorPosition} plants={plants} />
       <Footer />
