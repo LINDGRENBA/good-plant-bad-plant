@@ -8,39 +8,39 @@ To set up this project locally, open your terminal and navigate to the directory
 
 Once the project has been cloned, run `cd good-plant-bad-plant` to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
 
-To start the development server, run `npm start` or `yarn start`. Once the server has successfully started, open a window in your browser and navigate to the localhost. This is usually `localhost:3000`. You can confirm this is the correct Local address by checking in the terminal.
+To start the development server, type `npm start` or `yarn start`. Once the server has successfully started, open a window in your browser and navigate to the localhost. This is usually `localhost:3000`. You can confirm this is the correct Local address by checking in the terminal.
 
 ## Gameplay
 
 ### Mechanics :
-Tractor will move automatically. Player can control the direction with up, down, left and right arrows on the keyboard.
+The player can move the tractor with the up, down, left and right arrows on the keyboard.
 
 ### Components :
-Board: Field
-Player: Tractor
-Good plant: Corn
-Bad plant: Grass
-Moves counter
-Start Game Button
-Profit Points counter
+* Board: Field
+* Player: Tractor
+* Good plant: Corn
+* Bad plant: Grass
+* Moves counter
+* Start Game Button
+* Profit Points counter
 
 ### Objective :
-Try to get as many profit points as possible before the time runs out.
+Try to get as many profit points as possible before your moves run out.
 
 ### Rules :
-The tractor can only move up, down, left or right
-Mowing good plants decreases total profit points
-Mowing weeds increases total profit points
-When the timer runs out, the game is over
+* The tractor can only move up, down, left or right
+* Mowing good plants (corn) decreases total profit points
+* Mowing bad plants (grass) increases total profit points
+* When the player runs out of moves, the game is over
 
 ### Constants:
 consider adding constants for the following:
-FIELD_WIDTH
-FIELD_HEIGHT
-ICON_WIDTH
-ICON_HEIGHT
-TRACTOR_INITIAL_POSITION
-PERCENTAGE_RATE
+* FIELD_WIDTH
+* FIELD_HEIGHT
+* ICON_WIDTH
+* ICON_HEIGHT
+* TRACTOR_INITIAL_POSITION
+* PERCENTAGE_RATE
 
 ## Getting Started with Create React App
 
