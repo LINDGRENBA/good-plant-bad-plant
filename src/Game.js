@@ -9,6 +9,7 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(true);
   const [counter, setCounter] = useState(100);
   const [plants, setPlants] = useState([]);
+  const [highScore, setHighScore] = useState(0);
   //not using gameover ...
 
   const startNewGame = () => {
@@ -17,6 +18,9 @@ const Game = () => {
     setGameOver(false);
     setCounter(100);
     setPlants([]);
+    setHighScore( 
+      (highScore > profits) ? highScore : profits
+    )
     // gameLoop();
   }
 
@@ -26,15 +30,15 @@ const Game = () => {
 
   const moveTractor = (e) => {
     e.preventDefault();
-    createNewPlant();
-    createNewPlant();
-    createNewPlant();
-    (counter <= 0) ? endGame() : setCounter(counter - 1);
-    checkIfMowPlant();
-    const key = e.keyCode;
-    const oldPosition = [...tractorPosition];
-    const [x, y] = oldPosition;
     if(counter > 0) {
+      createNewPlant();
+      createNewPlant();
+      createNewPlant();
+      checkIfMowPlant();
+      const key = e.keyCode;
+      const oldPosition = [...tractorPosition];
+      const [x, y] = oldPosition;
+      setCounter(counter - 1);
       switch(key) {
         case 37:
           //left
@@ -42,19 +46,20 @@ const Game = () => {
           break;
         case 38:
           //up
-         setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y-100]));
+          setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y-100]));
           break;
         case 39:
           //right
-         setTractorPosition(checkIfOutOfBounds(oldPosition, [x + 100, y]));
+          setTractorPosition(checkIfOutOfBounds(oldPosition, [x + 100, y]));
           break;
         case 40:
           //down
-         setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y + 100]));
+          setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y + 100]));
           break;
         default:
           setTractorPosition(oldPosition); 
       }
+
     }
   }
 
@@ -104,20 +109,22 @@ const Game = () => {
   }
 
   const checkIfMowPlant = () => {
-    const currentPos = [...tractorPosition];
-    let updatedPlants = [...plants]
-    updatedPlants.map((plant, i) => {
-      if( currentPos[0] === plant.x && currentPos[1] === plant.y){
-        if(plant.type === "good") {
-          setProfits(profits => profits - 100);
+    if(counter > 0) {
+      const currentPos = [...tractorPosition];
+      let updatedPlants = [...plants]
+      updatedPlants.map((plant, i) => {
+        if( currentPos[0] === plant.x && currentPos[1] === plant.y){
+          if(plant.type === "good") {
+            setProfits(profits => profits - 100);
+          }
+          if(plant.type === "bad") {
+            setProfits(profits => profits + 50);
+          }
+          updatedPlants = plants.filter(plant => plant !== plants[i]);
+          setPlants([...updatedPlants]);
         }
-        if(plant.type === "bad") {
-          setProfits(profits => profits + 50);
-        }
-        updatedPlants = plants.filter(plant => plant !== plants[i]);
-        setPlants([...updatedPlants]);
-      }
-    })
+      })
+    }
   }
 
   // const gameLoop = () => {
@@ -137,19 +144,21 @@ const Game = () => {
 
   useEffect(() => {
     window.addEventListener("keydown", moveTractor);
-    // checkIfMowPlant();
 
     return () => {
       window.removeEventListener("keydown", moveTractor);
     }
   }, [tractorPosition]);
 
-  // window.requestAnimationFrame(gameLoop);
-
 
   return (
     <div>
-      <Header profits={profits} startNewGame={startNewGame} counter={counter} />
+      <Header 
+        highScore={highScore} 
+        profits={profits} 
+        startNewGame={startNewGame} 
+        counter={counter} 
+      />
       <div 
         style={{
           textAlign: 'center', 

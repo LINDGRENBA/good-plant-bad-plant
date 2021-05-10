@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Header = ({ profits, startNewGame, counter }) => {
+const Header = ({ highScore, profits, startNewGame, counter }) => {
     return (
         <div
             style={{
+                position: 'relative',
                 width: '100vw',
                 padding: '10px',
                 background: '#4c9f70',
@@ -11,6 +12,16 @@ const Header = ({ profits, startNewGame, counter }) => {
                 textAlign: 'center',
             }}
         >
+            <h2
+                style={{
+                    position: 'absolute',
+                    top: '10px',
+                    left: '20px',
+                }}
+            >
+                High Score: {highScore}
+            </h2>
+            
             <h1>Good Plant, Bad Plant</h1>
             <div
                 style={{
