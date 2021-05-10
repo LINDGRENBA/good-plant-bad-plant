@@ -33,14 +33,6 @@ Mowing good plants decreases total profit points
 Mowing weeds increases total profit points
 When the timer runs out, the game is over
 
-* Add the images for the plants and player
-corn attribute - <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-lawn mower attribute - <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-grass attribute - <div>Icons made by <a href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-
-
-* Create the state for each of the components
-set the position of the tractor using style={{ }} set the position to absolute and then use the x,y coordinates to set the top and left position.
 
 #### TODOS:
 in setup, replace `repo-link` with the actual repo link

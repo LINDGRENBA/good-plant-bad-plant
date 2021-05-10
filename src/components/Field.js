@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Tractor from './Tractor';
+import Plant from './Plant';
 
-const Field = ({ squares, tractorPosition }) => {
+const Field = ({ plants, tractorPosition }) => {
 
     return (
         <div 
@@ -11,8 +12,9 @@ const Field = ({ squares, tractorPosition }) => {
                 width: '1000px',
                 height: '800px',
                 background: '#fdf5d8',
-                margin: '50px auto',
+                margin: '10px auto',
                 border: '4px solid black',
+                zIndex: '-1',
             }}
             >
             <Tractor tractorPosition={tractorPosition} />
