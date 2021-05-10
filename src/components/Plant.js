@@ -8,8 +8,8 @@ const Plant = ({plant}) => {
             className={style}
             style={{
                 position: 'absolute',
-                top: `${x}px`,
-                left: `${y}px`,
+                top: `${y}px`,
+                left: `${x}px`,
                 height: '100px',
                 width: '100px',
                 backgroundSize: 'cover',

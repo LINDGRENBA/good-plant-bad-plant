@@ -9,7 +9,7 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(false);
   const [plants, setPlants] = useState([{
     x: 100,
-    y: 900,
+    y: 700,
     type: "good"
   },
   {
@@ -18,8 +18,8 @@ const Game = () => {
     type: "good"
   },
   {
-    x: 700,
-    y: 500,
+    x: 500,
+    y: 100,
     type: "bad"
   }
 ]);
@@ -38,27 +38,28 @@ const Game = () => {
   const moveTractor = (e) => {
     e.preventDefault();
     checkIfMowPlant();
-    createNewPlant();
     const key = e.keyCode;
     const oldPosition = [...tractorPosition];
+    const [x, y] = oldPosition;
     // console.log(`old position ${oldPosition}`);
     switch(key) {
       // [up/down, left/right]
       case 37:
         //left
-        setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0], tractorPosition[1] - 100])); // pass [0, 0] to checkIfOutOfBounds
+        console.log(key);
+        setTractorPosition(checkIfOutOfBounds(oldPosition, [x - 100, y]));
         break;
       case 38:
         //up
-       setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0] - 100, tractorPosition[1]]));
+       setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y-100]));
         break;
       case 39:
         //right
-       setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0], tractorPosition[1] + 100]));
+       setTractorPosition(checkIfOutOfBounds(oldPosition, [x + 100, y]));
         break;
       case 40:
         //down
-       setTractorPosition(checkIfOutOfBounds(oldPosition, [tractorPosition[0] + 100, tractorPosition[1]]));
+       setTractorPosition(checkIfOutOfBounds(oldPosition, [x, y + 100]));
         break;
       default:
         setTractorPosition(oldPosition); 
@@ -68,24 +69,29 @@ const Game = () => {
   const checkIfOutOfBounds = (oldPos, newPos) => {
     // console.log(oldPos, newPos);
     // check that x and y coordinates are not outside of field boundaries
-    return (newPos[0] >=0 && newPos[0] < 800) && (newPos[1] >= 0 && newPos[1] < 1000) ? newPos : oldPos;
+    return (newPos[0] >=0 && newPos[0] < 1000) && (newPos[1] >= 0 && newPos[1] < 800) ? newPos : oldPos;
   }
 
-  const checkCoordinates = (coordinates,) => {
+  const checkCoordinates = (coordinates) => {
+    const [x, y] = coordinates;
+    let matchFound = [];
+    
+    let result = plants.map((plant) => {
+      if (
+        (plant.x == x && plant.y == y) ||
+        (tractorPosition[0] == x && tractorPosition[1] == y)
+        ) {
+        matchFound.push(true);
+      } else {
+        matchFound.push(false);
+      }
+    });
 
-    // ||
+    return matchFound.includes(true) ? true : false;
+      // ||
     //     (tractorPosition[0] === newPlant.x && tractorPosition[1] === newPlant.y) ||
     //     (newPlant.x > 1000 || newPlant.x < 0) ||
     //     (newPlant.y > 800 || newPlant.y < 0)
-    
-    plants.map((plant) => {
-      return (plant.x == coordinates[0] && plant.y == coordinates[1]) ? true : false
-      // if((plant.y == coordinates[0] && plant.x == coordinates[1]) ) {
-      //     return true;
-      //   }
-    });
-
-    return false;
   }
 
   const createNewPlant = () => {
@@ -95,19 +101,19 @@ const Game = () => {
     const coordinates = [x, y];
     // console.log(coordinates);
     const coordinatesFull = checkCoordinates(coordinates);
-    console.log(coordinatesFull);
-    console.log(coordinates);
-    // generate a good or bad plant
-    let type = "";
-    const percentageRate = 5;
-    (Math.floor(Math.random() * 10) > percentageRate) ? type="good" : type="bad";
-    // console.log(type);
-    const newPlant = {
-      x,
-      y,
-      type
+    if(!coordinatesFull) {
+      let type = "";
+      const percentageRate = 5;
+      (Math.floor(Math.random() * 10) > percentageRate) ? type="good" : type="bad";
+      // console.log(type);
+      const newPlant = {
+        x,
+        y,
+        type
+      }
+
+      setPlants([...plants, newPlant]);
     }
-    // console.log(newPlant);
   }
 
   const checkIfMowPlant = () => {
@@ -140,7 +146,7 @@ const Game = () => {
     return () => {
       window.removeEventListener("keydown", moveTractor);
     }
-  }, [tractorPosition]);
+  }, [tractorPosition, plants]);
 
 
   return (

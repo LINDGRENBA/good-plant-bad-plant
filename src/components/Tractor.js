@@ -11,8 +11,8 @@ const Tractor = ({ tractorPosition }) => {
           alt="a tractor"
           style={{
             position: 'absolute',
-            top: `${tractorPosition[0]}px`,
-            left: `${tractorPosition[1]}px`,
+            left: `${tractorPosition[0]}px`,
+            top: `${tractorPosition[1]}px`,
             height: '100px',
             width: '100px',
             zIndex: '20',
