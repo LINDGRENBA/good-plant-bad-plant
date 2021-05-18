@@ -28,16 +28,44 @@ const Game = () => {
     
   }
 
+  //example 1 from Andrew
+  const moveTractor = e => {
+    const [x, y] = tractorPostion;
+    let newTractorPosition; // left undefined on purpose so that it's falsy
+    switch(e.keyCode) {
+      case 37:
+        newTractorPosition = [x - 100, y];
+    }
+    if (newTractorPosition && isInBounds(newTractorPosition)) {
+      setTractorPosition(newTractorPosition);
+    }
+  }
+
+  //example 2 from Andrew
+  // based on different concept of checkIfOutOfBounds
+  let isInBounds = checkIfOutOfBounds(tractorPostion);
+
+switch(e.keyCode) {
+	case 37:
+		isInBounds([x - 100, y])
+}
+
+  
+  
+  // rename checkIfOutOfBounds to isInBounds and have it return true or false
   const moveTractor = (e) => {
     e.preventDefault();
     console.log(e.keyCode);
     const [x, y] = tractorPosition;
+    // create a newTractorPosition copy of the tractorPosition and then when creating a check, pass in the new tractor position
     // 37 left, 38 up, 39 right, 40 down
     switch(e.keyCode){
+      // LEFT
       case 37:
         // could put unit tests on checkIfOutOfBounds and pass it different values to make sure it's returning the appropriate values
         checkIfOutOfBounds(tractorPosition)([x - 100, y]);
         break;
+      // 
       case 38:
         checkIfOutOfBounds(tractorPosition)([x, y - 100]);
         break;
@@ -59,11 +87,14 @@ const Game = () => {
   // double check the logic for newX and newY 
   // try to see if I can change checkIfOutOfBounds to a curried function - instead of the two functions in moveTractor, move some of the logic down to checkIfOutOfBounds
   // come to the next meeting with that done, talk about the feedback I received and what I did afterwards 
-  const checkIfOutOfBounds = () => {
+  const checkIfOutOfBounds = (tractorPosition) => {
     //would expect checkIfOutOfBounds to return true or false and then set the tractor position, not for checkIfOutOfBounds to have the side effect of setTractorPosition.
     return (newPos) => {
       const [newX, newY] = newPos;
+      // below is a side effect, can't unit test when there are side effects, trickier to test
+      // below is basis of the isInBounds function - anytime a function starts with 'is' you want it to tell you true or false
       setTractorPosition( (newX >= 0 && newX <= 1000 && newY >= 0 && newY <= 800) ? newPos : tractorPosition );
+      // want a pure function - no side effects and if you give it the same value you get the same value back - idempotent / determinate
     }
   }
 
@@ -88,6 +119,7 @@ const Game = () => {
   }
 
   useEffect(() => {
+    // 
     window.addEventListener("keydown", moveTractor);
 
     // could probably remove this, but is protecting against memory leaks if necessary
