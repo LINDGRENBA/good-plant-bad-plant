@@ -35,30 +35,36 @@ const Game = () => {
     // 37 left, 38 up, 39 right, 40 down
     switch(e.keyCode){
       case 37:
-        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x - 100, y]));
+        // could put unit tests on checkIfOutOfBounds and pass it different values to make sure it's returning the appropriate values
+        checkIfOutOfBounds(tractorPosition)([x - 100, y]);
         break;
       case 38:
-        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x, y - 100]));
+        checkIfOutOfBounds(tractorPosition)([x, y - 100]);
         break;
       case 39:
-        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x + 100, y]));
+        checkIfOutOfBounds(tractorPosition)([x + 100, y]);
         break;
       case 40:
-        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x, y + 100]));
+        checkIfOutOfBounds(tractorPosition)([x, y + 100]);
         break;
+        //if someone presses a diff key, can have a passthrough / no-op
+        // passthrough has to do with switch statement - passes through switch without doing anything
+        // no-op is any function that does no operations
       default:
-        setTractorPosition(tractorPosition);
+        // no other keys should effect tractor movement
+        // setTractorPosition(tractorPosition);
     }
   }
 
-  const checkIfOutOfBounds = (initPos, newPos) => {
-    const [newX, newY] = newPos;
-
-    // double check the logic for newX and newY 
-    // try to see if I can change checkIfOutOfBounds to a curried function - instead of the two functions in moveTractor, move some of the logic down to checkIfOutOfBounds
-    // come to the next meeting with that done, talk about the feedback I received and what I did afterwards 
-
-    return (newX >= 0 && newX <= 1000 && newY >= 0 && newY <= 800) ? newPos : initPos;
+  // double check the logic for newX and newY 
+  // try to see if I can change checkIfOutOfBounds to a curried function - instead of the two functions in moveTractor, move some of the logic down to checkIfOutOfBounds
+  // come to the next meeting with that done, talk about the feedback I received and what I did afterwards 
+  const checkIfOutOfBounds = () => {
+    //would expect checkIfOutOfBounds to return true or false and then set the tractor position, not for checkIfOutOfBounds to have the side effect of setTractorPosition.
+    return (newPos) => {
+      const [newX, newY] = newPos;
+      setTractorPosition( (newX >= 0 && newX <= 1000 && newY >= 0 && newY <= 800) ? newPos : tractorPosition );
+    }
   }
 
   // const checkIfOutOfBounds = (e) => {
@@ -84,6 +90,7 @@ const Game = () => {
   useEffect(() => {
     window.addEventListener("keydown", moveTractor);
 
+    // could probably remove this, but is protecting against memory leaks if necessary
     return () => {
       window.removeEventListener("keydown", moveTractor)
     }
