@@ -2,7 +2,7 @@ import React from 'react';
 import Tractor from './Tractor';
 import Plant from './Plant';
 
-const Field = ({ tractorPosition, plants }) => {
+const Field = ({ plants, tractorPosition }) => {
 
     return (
         <div 

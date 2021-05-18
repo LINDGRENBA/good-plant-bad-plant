@@ -1,50 +1,46 @@
-# Cultivate
+# Good Plant, Bad Plant
 
 ## Description
 An agricultural game where you try to take out the nasty weeds and leave the good plants to grow. 
 
 ## Setup
-To set up this project locally, open your terminal and navigate to the directory where you would like to clone the project. Run `git clone repo-link` in your terminal.
+To set up this project locally, open your terminal and navigate to the directory where you would like to clone the project. Copy the code link from the [Github repository](https://github.com/LINDGRENBA/good-plant-bad-plant) and run `git clone git@github.com:LINDGRENBA/good-plant-bad-plant.git` for ssh or `git clone https://github.com/LINDGRENBA/good-plant-bad-plant.git` for https in your terminal.
 
-Once the project has been cloned, run `cd cultivate` to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
+Once the project has been cloned, type `cd good-plant-bad-plant` into your terminal and press enter to navigate into the project. Then run `npm install` or `yarn install` to install all of the dependencies for the project.
 
-To start the development server, run `npm start` or `yarn start`. Once the server has successfully started, open a window in your browser and navigate to the localhost. This is usually `localhost:3000`. You can confirm this is the correct Local address by checking in the terminal.
+To start the development server, type `npm start` or `yarn start`. Once the server has successfully started, open a window in your browser and navigate to the localhost. This is usually `localhost:3000`. You can confirm this is the correct Local address by checking in the terminal.
 
 ## Gameplay
 
 ### Mechanics :
-Tractor will move automatically. Player can control the direction with up, down, left and right arrows on the keyboard.
+The player can move the tractor with the up, down, left and right arrows on the keyboard.
 
 ### Components :
-Board: Field
-Player: Tractor
-Good plant: Corn
-Bad plant: Grass
-Countdown Timer
-Start Game Button
-Profit Points counter
+* Board: Field
+* Player: Tractor
+* Good plant: Corn
+* Bad plant: Grass
+* Moves counter
+* Start Game Button
+* Profit Points counter
 
 ### Objective :
-Try to get as many profit points as possible before the time runs out.
+Try to get as many profit points as possible before your moves run out.
 
 ### Rules :
-The tractor can only move up, down, left or right
-Mowing good plants decreases total profit points
-Mowing weeds increases total profit points
-When the timer runs out, the game is over
+* The tractor can only move up, down, left or right
+* Mowing good plants (corn) decreases total profit points
+* Mowing bad plants (grass) increases total profit points
+* When the player runs out of moves, the game is over
 
 ### Constants:
 consider adding constants for the following:
-FIELD_WIDTH
-FIELD_HEIGHT
-ICON_WIDTH
-ICON_HEIGHT
-TRACTOR_INITIAL_POSITION
-PERCENTAGE_RATE
-
-#### TODOS:
-in setup, replace `repo-link` with the actual repo link
-
+* FIELD_WIDTH
+* FIELD_HEIGHT
+* ICON_WIDTH
+* ICON_HEIGHT
+* TRACTOR_INITIAL_POSITION
+* PERCENTAGE_RATE
 
 ## Getting Started with Create React App
 
