@@ -12,6 +12,14 @@ const Game = () => {
   const [plants, setPlants] = useState([]);
   const [highScore, setHighScore] = useState(0);
 
+  const [currentX, currentY] = tractorPosition;
+  const directions = {
+    37: [currentX - 100, currentY],
+    38: [currentX, currentY - 100],
+    39: [currentX + 100, currentY],
+    40: [currentX, currentY + 100]
+  }
+
   const startNewGame = () => {
 
   }
@@ -22,33 +30,19 @@ const Game = () => {
 
   const moveTractor = e => {
     e.preventDefault();
-    const [x, y] = tractorPosition;
-    let newTractorPosition; // undefined-falsy
-    switch(e.keyCode) {
-      case 37: // LEFT
-        newTractorPosition = [x - 100, y];
-        break;
-      case 38: // UP
-        newTractorPosition = [x, y - 100];
-        break;
-      case 39: // RIGHT
-        newTractorPosition = [x + 100, y];
-        break;
-      case 40: // DOWN
-        newTractorPosition = [x, y + 100];
-        break;
-      default:
-        // no other keys should effect tractor movement
-    }
-
-    if (newTractorPosition && isInBounds(newTractorPosition)) {
+    const key = e.keyCode;
+    if(key === 37 || key === 38 || key === 39 || key === 40) {
+      let direction = directions[e.keyCode];
+      let newTractorPosition = checkBoundaries(direction)(tractorPosition);
       setTractorPosition(newTractorPosition);
     }
   }  
 
-  const isInBounds = (newPos) => {
-    const [x, y] = newPos;
-    return (x >= 0 && x <= 1000 && y >= 0 && y <= 800) ? true : false;
+  const checkBoundaries = (newPosition) => {
+      return previousPosition => {
+        const [x, y] = newPosition;
+        return (x >= 0 && x <= 900 && y >= 0 && y <= 700) ? newPosition : previousPosition;
+      }
   }
 
   const checkCoordinates = () => {
@@ -66,6 +60,7 @@ const Game = () => {
   useEffect(() => { 
     window.addEventListener("keydown", moveTractor);
 
+    // not needed for single page app, but left in case to avoid memory leak
     return () => {
       window.removeEventListener("keydown", moveTractor)
     }
