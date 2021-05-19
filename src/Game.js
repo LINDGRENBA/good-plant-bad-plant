@@ -20,12 +20,37 @@ const Game = () => {
     
   }
 
-  const moveTractor = () => {
-    
+  const moveTractor = (e) => {
+    e.preventDefault();
+    console.log(e.keyCode);
+    const [x, y] = tractorPosition;
+    // 37 left, 38 up, 39 right, 40 down
+    switch(e.keyCode){
+      case 37:
+        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x - 100, y]));
+        break;
+      case 38:
+        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x, y - 100]));
+        break;
+      case 39:
+        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x + 100, y]));
+        break;
+      case 40:
+        setTractorPosition(checkIfOutOfBounds(tractorPosition, [x, y + 100]));
+        break;
+      default:
+        setTractorPosition(tractorPosition);
+    }
   }
 
-  const checkIfOutOfBounds = () => {
-    
+  const checkIfOutOfBounds = (initPos, newPos) => {
+    const [newX, newY] = newPos;
+
+    // double check the logic for newX and newY 
+    // try to see if I can change checkIfOutOfBounds to a curried function - instead of the two functions in moveTractor, move some of the logic down to checkIfOutOfBounds
+    // come to the next meeting with that done, talk about the feedback I received and what I did afterwards 
+
+    return (newX >= 0 && newX <= 1000 && newY >= 0 && newY <= 800) ? newPos : initPos;
   }
 
   const checkCoordinates = () => {
@@ -41,8 +66,12 @@ const Game = () => {
   }
 
   useEffect(() => {
+    window.addEventListener("keydown", moveTractor);
 
-  })
+    return () => {
+      window.removeEventListener("keydown", moveTractor)
+    }
+  }, [tractorPosition]);
 
   return (
     <div>
