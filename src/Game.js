@@ -69,7 +69,7 @@ const Game = () => {
   return (
     <div>
       <Header 
-        imeRemaining={timeRemaining} 
+        timeRemaining={timeRemaining} 
         profits={profits}
         startNewGame={startNewGame}
         moves={moves}
