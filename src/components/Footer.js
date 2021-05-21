@@ -2,6 +2,10 @@ const Footer = () => {
     return (
         <div
             style={{
+                position: 'fixed',
+                bottom: '0',
+                left: '0',
+                right: '0',
                 width: '100vw',
                 minHeight: '100px',
                 background: '#4c9f70',
