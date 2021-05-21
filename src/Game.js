@@ -67,7 +67,7 @@ const Game = () => {
   }, [tractorPosition]);
 
   return (
-    <div>
+    <div style={{width: '100vw'}}>
       <Header 
         timeRemaining={timeRemaining} 
         profits={profits}
