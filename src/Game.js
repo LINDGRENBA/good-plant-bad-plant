@@ -14,10 +14,10 @@ const Game = () => {
 
   const [currentX, currentY] = tractorPosition;
   const directions = {
-    37: [currentX - 100, currentY],
-    38: [currentX, currentY - 100],
-    39: [currentX + 100, currentY],
-    40: [currentX, currentY + 100]
+    37: [currentX - 100, currentY], //LEFT
+    38: [currentX, currentY - 100], //UP
+    39: [currentX + 100, currentY], //RIGHT
+    40: [currentX, currentY + 100], //DOWN
   }
 
   const startNewGame = () => {
