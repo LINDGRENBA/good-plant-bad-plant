@@ -9,7 +9,18 @@ const Game = () => {
   const [timeRemaining, setTimeRemaining] = useState(5);
   const [gameOver, setGameOver] = useState(true);
   const [moves, setMoves] = useState(100);
-  const [plants, setPlants] = useState([]);
+  const [plants, setPlants] = useState([
+    {
+      x: 500,
+      y: 300,
+      type: "good",
+    },
+    {
+      x: 700,
+      y: 200,
+      type: "bad",
+    }
+  ]);
   const [highScore, setHighScore] = useState(0);
 
   const [currentX, currentY] = tractorPosition;
@@ -45,12 +56,35 @@ const Game = () => {
       }
   }
 
-  const checkCoordinates = () => {
-    
+  const isSpaceOccupied = (coordinates) => {
+    const [plantX, plantY] = coordinates;
+    const [tractorX, tractorY] = tractorPosition;
+
+    if(plantX === tractorX && plantY === tractorY) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   const createNewPlant = () => {
-    
+    const x = Math.ceil( (Math.floor(Math.random() * 900)) / 100) * 100;
+    const y = Math.ceil( (Math.floor(Math.random() * 700)) / 100) * 100;
+    const coordinates = [x, y];
+    console.log(coordinates);
+    const spaceFilled = isSpaceOccupied(coordinates);
+
+    if(!spaceFilled) {
+      const goodPlantPercentage = 4;
+      const type = (Math.floor(Math.random() * 10) > goodPlantPercentage) ? "good" : "bad";
+      const newPlant = {
+        x,
+        y,
+        type,
+      };
+      setPlants({...setPlants, newPlant});
+      debugger;
+    }
   }
 
   const checkIfMowPlant = () => {
@@ -59,6 +93,7 @@ const Game = () => {
 
   useEffect(() => { 
     window.addEventListener("keydown", moveTractor);
+    createNewPlant();
 
     // not needed for single page app, but left in case to avoid memory leak
     return () => {
