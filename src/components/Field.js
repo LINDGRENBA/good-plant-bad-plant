@@ -18,11 +18,6 @@ const Field = ({ plants, tractorPosition }) => {
             }}
             >
             <Tractor tractorPosition={tractorPosition} />
-            { (plants.length > 0) && plants.map((plant, i) => {
-                return (
-                    <Plant key={i} plant={plant} />
-                )
-            })}
         </div>
     )
 }
