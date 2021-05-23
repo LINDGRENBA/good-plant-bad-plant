@@ -13,15 +13,19 @@ const Header = ({ highScore, profits, startNewGame, moves }) => {
             }}
         >
 
-            <h2
+            <div
                 style={{
-                    position: 'absolute',
-                    top: '10px',
-                    left: '20px',
-                }}
+                        position: 'absolute',
+                        top: '10px',
+                        left: '20px',
+                        textAlign: 'left',
+                    }}
             >
-                High Score: {highScore}
-            </h2>
+                <h2>
+                    High Score: {highScore}
+                </h2>
+                <button onClick={startNewGame}>Start Game</button>
+            </div>
 
             <h1>Good Plant, Bad Plant</h1>
             <div>

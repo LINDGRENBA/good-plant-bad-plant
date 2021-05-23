@@ -42,6 +42,63 @@ consider adding constants for the following:
 * TRACTOR_INITIAL_POSITION
 * PERCENTAGE_RATE
 
+<br/>
+
+### Bugs and Errors Encountered:
+* Using the following code to call `createNewPlant()`
+```  
+useEffect(() => { 
+    window.addEventListener("keydown", moveTractor);
+    createNewPlant();
+
+    return () => {
+      window.removeEventListener("keydown", moveTractor)
+    }
+  }, [tractorPosition, plants]);
+  ```
+resulted in a single flash of plants which then disappeared, leaving an empty field.
+
+* Wrapping `createNewPlant()` in a `setTimeout` function and adding `plants` to the `useEffect` dependency array appeared to work, but `plants` would not be generated while the `tractor` was being moved.
+
+* Calling the `setInterval` function from useEffect resulted in some pretty interesting behavior...
+
+![strange behavior](setInterval-issues.gif)
+
+I'm guessing this is due to how React re-renders components and how `useEffect` is functioning.
+
+<br/>
+
+### Solution: 
+One option is to call `createNewPlant()` from the `moveTractor()` function, making the plant creation occur as the tractor moves. This is the approach I took in my initial test run, which can be found on the `practice-run` branch.
+
+The other option is to create a second `useEffect` for `setInterval` and to pass `plants` to its dependency array. In order to avoid an infinite loop here, I added a start button which sets the state of `gameOver` to false and then based the continuation of `setInterval` on the value of `gameOver`.
+Here is the second `useEffect` hook:
+```
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if(!gameOver) {
+          createNewPlant();
+      }
+    }, 2000);
+
+    return () => {
+      clearInterval(interval);
+    }
+  }, [plants]);
+  ```
+  The idea is for gameOver to be set to true once all `moves` have been used up at which point the setInterval function will stop running.
+
+  * If you prefer to have plants be generated as soon as the page loaded, take the following steps:
+  1. In `Header.js` comment out the button that triggers `startNewGame()`
+  2. In `Game.js` comment out the `startNewGame` props that are being passed to header and also comment out the `startNewGame()` function
+  3. At the top of `Game.js` set the initial state of `gameOver` to false
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

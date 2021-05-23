@@ -9,18 +9,7 @@ const Game = () => {
   const [timeRemaining, setTimeRemaining] = useState(5);
   const [gameOver, setGameOver] = useState(true);
   const [moves, setMoves] = useState(100);
-  const [plants, setPlants] = useState([
-    {
-      x: 500,
-      y: 300,
-      type: "good",
-    },
-    {
-      x: 700,
-      y: 200,
-      type: "bad",
-    }
-  ]);
+  const [plants, setPlants] = useState([]);
   const [highScore, setHighScore] = useState(0);
 
   const [currentX, currentY] = tractorPosition;
@@ -32,7 +21,8 @@ const Game = () => {
   }
 
   const startNewGame = () => {
-
+    setGameOver(false);
+    createNewPlant();
   }
 
   const endGame = () => {
@@ -68,6 +58,7 @@ const Game = () => {
   }
 
   const createNewPlant = () => {
+    const plantsCopy = [...plants];
     const x = Math.ceil( (Math.floor(Math.random() * 900)) / 100) * 100;
     const y = Math.ceil( (Math.floor(Math.random() * 700)) / 100) * 100;
     const coordinates = [x, y];
@@ -82,7 +73,7 @@ const Game = () => {
         y,
         type,
       };
-      setPlants([...plants, newPlant]);
+      setPlants([...plantsCopy, newPlant]);
     }
   }
 
@@ -92,20 +83,24 @@ const Game = () => {
 
   useEffect(() => { 
     window.addEventListener("keydown", moveTractor);
-    // createNewPlant();
-    // this is executed on each rerender
-    const interval = setInterval(() => {
-      createNewPlant();
-      console.log(plants);
-      debugger;
-    }, 2000);
 
     // not needed for single page app, but left in case to avoid memory leak
     return () => {
       window.removeEventListener("keydown", moveTractor)
+    }
+  }, [tractorPosition]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if(!gameOver) {
+          createNewPlant();
+      }
+    }, 2000);
+
+    return () => {
       clearInterval(interval);
     }
-  }, [tractorPosition, plants]);
+  }, [plants]);
 
   return (
     <div style={{width: '100vw'}}>
