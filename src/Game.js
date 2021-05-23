@@ -82,8 +82,7 @@ const Game = () => {
         y,
         type,
       };
-      setPlants({...setPlants, newPlant});
-      debugger;
+      setPlants([...plants, newPlant]);
     }
   }
 
@@ -95,12 +94,18 @@ const Game = () => {
     window.addEventListener("keydown", moveTractor);
     // createNewPlant();
     // this is executed on each rerender
+    const interval = setInterval(() => {
+      createNewPlant();
+      console.log(plants);
+      debugger;
+    }, 2000);
 
     // not needed for single page app, but left in case to avoid memory leak
     return () => {
       window.removeEventListener("keydown", moveTractor)
+      clearInterval(interval);
     }
-  }, [tractorPosition]);
+  }, [tractorPosition, plants]);
 
   return (
     <div style={{width: '100vw'}}>
