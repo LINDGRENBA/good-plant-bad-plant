@@ -93,7 +93,8 @@ const Game = () => {
 
   useEffect(() => { 
     window.addEventListener("keydown", moveTractor);
-    createNewPlant();
+    // createNewPlant();
+    // this is executed on each rerender
 
     // not needed for single page app, but left in case to avoid memory leak
     return () => {
