@@ -45,6 +45,7 @@ consider adding constants for the following:
 <br/>
 
 ### Bugs and Errors Encountered:
+1. Issue with Plant Generation
 * Using the following code to call `createNewPlant()`
 ```  
 useEffect(() => { 
@@ -92,6 +93,19 @@ Here is the second `useEffect` hook:
   1. In `Header.js` comment out the button that triggers `startNewGame()`
   2. In `Game.js` comment out the `startNewGame` props that are being passed to header and also comment out the `startNewGame()` function
   3. At the top of `Game.js` set the initial state of `gameOver` to false
+
+
+2. Issue with Plant Rendering if Space is Filled
+* If the board is allowed to fill up and the randomly generated plant coordinates are already full, it can give the appearance that new plants are not being generated, as it takes longer for unfilled coordinates to be generated.
+
+### Solution: 
+In progress
+
+3. `createNewPlant()` continues to run after `moves` hits zero and `gameOver` is set to true.
+
+### Solution:
+Add `gameOver` to the dependency array of the useEffect hook that is responsible for the setInterval
+
 
 <br/>
 <br/>
