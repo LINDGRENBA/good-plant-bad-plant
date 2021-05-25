@@ -25,17 +25,20 @@ const Game = () => {
     createNewPlant();
   }
 
-  const endGame = () => {
-    
+  const isGameOver = () => {
+    (moves <= 0) && setGameOver(true);
   }
 
   const moveTractor = e => {
     e.preventDefault();
     const key = e.keyCode;
     if(key === 37 || key === 38 || key === 39 || key === 40) {
-      let direction = directions[e.keyCode];
-      let newTractorPosition = checkBoundaries(direction)(tractorPosition);
-      setTractorPosition(newTractorPosition);
+      if(!gameOver) {
+        let direction = directions[e.keyCode];
+        let newTractorPosition = checkBoundaries(direction)(tractorPosition);
+          setTractorPosition(newTractorPosition);
+          setMoves(moves - 1);
+        }
     }
   }  
 
@@ -83,12 +86,12 @@ const Game = () => {
 
   useEffect(() => { 
     window.addEventListener("keydown", moveTractor);
-
+    isGameOver();
     // not needed for single page app, but left in case to avoid memory leak
     return () => {
-      window.removeEventListener("keydown", moveTractor)
+      window.removeEventListener("keydown", moveTractor);
     }
-  }, [tractorPosition]);
+  }, [tractorPosition, moves, gameOver]);
 
   useEffect(() => {
     const interval = setInterval(() => {
