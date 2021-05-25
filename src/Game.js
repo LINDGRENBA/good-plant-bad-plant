@@ -52,8 +52,14 @@ const Game = () => {
   const isSpaceOccupied = (coordinates) => {
     const [plantX, plantY] = coordinates;
     const [tractorX, tractorY] = tractorPosition;
+    const occupiedByPlant = [];
+    plants.forEach(plant => {
+      (plantX === plant.x && plantY === plant.y) && occupiedByPlant.push(plant);
+    })
 
     if(plantX === tractorX && plantY === tractorY) {
+      return true;
+    } else if(occupiedByPlant.length > 0) {
       return true;
     } else {
       return false;
@@ -103,7 +109,7 @@ const Game = () => {
     return () => {
       clearInterval(interval);
     }
-  }, [plants]);
+  }, [plants, gameOver]);
 
   return (
     <div style={{width: '100vw'}}>
