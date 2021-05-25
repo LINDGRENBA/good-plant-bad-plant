@@ -66,9 +66,9 @@ const Game = () => {
     const y = Math.ceil( (Math.floor(Math.random() * 700)) / 100) * 100;
     const coordinates = [x, y];
     console.log(coordinates);
-    const spaceFilled = isSpaceOccupied(coordinates);
+    const coordinatesOccupied = isSpaceOccupied(coordinates);
 
-    if(!spaceFilled) {
+    if(!coordinatesOccupied) {
       const goodPlantPercentage = 4;
       const type = (Math.floor(Math.random() * 10) > goodPlantPercentage) ? "good" : "bad";
       const newPlant = {
