@@ -37,6 +37,7 @@ const Game = () => {
         let direction = directions[e.keyCode];
         let newTractorPosition = checkBoundaries(direction)(tractorPosition);
           setTractorPosition(newTractorPosition);
+          checkIfMowedPlant();
           setMoves(moves - 1);
         }
     }
@@ -71,7 +72,6 @@ const Game = () => {
     const x = Math.ceil( (Math.floor(Math.random() * 900)) / 100) * 100;
     const y = Math.ceil( (Math.floor(Math.random() * 700)) / 100) * 100;
     const coordinates = [x, y];
-    console.log(coordinates);
     const coordinatesOccupied = isSpaceOccupied(coordinates);
 
     if(!coordinatesOccupied) {
@@ -86,8 +86,15 @@ const Game = () => {
     }
   }
 
-  const checkIfMowPlant = () => {
-    
+  const checkIfMowedPlant = () => {
+    const currentPos = [...tractorPosition];
+    const [currentX, currentY] = currentPos;
+    let plantsCopy = [...plants];
+    plants.forEach((plant, i) => {
+      if(currentX === plant.x && currentY === plant.y) {
+        setPlants(plantsCopy.filter(plant => plant !== plants[i]));
+      }
+    });
   }
 
   useEffect(() => { 
@@ -96,15 +103,16 @@ const Game = () => {
     // not needed for single page app, but left in case to avoid memory leak
     return () => {
       window.removeEventListener("keydown", moveTractor);
+      isGameOver();
     }
   }, [tractorPosition, moves, gameOver]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(!gameOver) {
+      if(!gameOver && plants.length <= 79) {
           createNewPlant();
       }
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearInterval(interval);
